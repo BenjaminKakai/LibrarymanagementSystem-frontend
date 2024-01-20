@@ -1,0 +1,17 @@
+/* src/BookDetail/BookDetail.css */
+
+.book-detail-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .book-detail-container h1 {
+    color: #2c3e50;
+  }
+  
+  .book-detail-container p {
+    color: #34495e;
+  }
+  
+  /* You might want to add more styles for layout, typography, etc. */
+  

@@ -1,0 +1,17 @@
+/* src/AdminDashboard/AdminDashboard.css */
+
+.admin-dashboard-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .admin-dashboard-container h1 {
+    color: #2c3e50;
+  }
+  
+  .admin-dashboard-container p {
+    color: #34495e;
+  }
+  
+  /* You can add more styles as needed for dashboard layout, controls, and elements */
+  

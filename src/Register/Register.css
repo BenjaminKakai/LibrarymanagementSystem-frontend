@@ -1,0 +1,22 @@
+/* src/Register/Register.css */
+
+.register-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .register-container form {
+    margin-top: 20px;
+  }
+  
+  .register-container label {
+    margin-right: 10px;
+  }
+  
+  .register-container input {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Add more styles as needed */
+  

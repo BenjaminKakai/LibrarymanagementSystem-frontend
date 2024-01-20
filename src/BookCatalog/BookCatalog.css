@@ -1,0 +1,13 @@
+/* src/BookCatalog/BookCatalog.css */
+
+.book-catalog-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .book-catalog-container h1 {
+    color: #2c3e50;
+  }
+  
+  /* Add additional styles for your book items, like a grid or list layout, etc. */
+  
