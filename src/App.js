@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext'; // Import the AuthProvider
 
 import NavigationBar from './NavigationBar/NavigationBar';
 import HomePage from './HomePage/HomePage';
@@ -13,20 +14,22 @@ import AdminDashboard from './AdminDashboard/AdminDashboard';
 
 function App() {
   return (
-    <Router>
-      <NavigationBar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/books" element={<BookCatalog />} />
-        <Route path="/book/:id" element={<BookDetail />} />
-        <Route path="/issues" element={<IssueManagement />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<UserProfile />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        {/* Add other routes as needed */}
-      </Routes>
-    </Router>
+    <AuthProvider> {/* Wrap the Router with AuthProvider */}
+      <Router>
+        <NavigationBar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/books" element={<BookCatalog />} />
+          <Route path="/books/:id" element={<BookDetail />} />
+          <Route path="/issues" element={<IssueManagement />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          {/* Add other routes as needed */}
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 

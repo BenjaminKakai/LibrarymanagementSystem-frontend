@@ -1,46 +1,48 @@
-// src/Register/Register.js
-
 import React, { useState } from 'react';
-import './Register.css'; // Importing the CSS file
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle registration logic here
-    console.log('Registering with:', username, email, password);
+    setError('');
+
+    try {
+      const response = await fetch('http://localhost:8081/api/auth/register', { // Corrected URL
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        setError(`Registration failed: ${errorText || response.statusText}`);
+        return;
+      }
+
+      navigate('/login'); // Redirect on success
+    } catch (error) {
+      console.error('An error occurred during registration:', error);
+      setError('An unexpected error occurred. Please try again.');
+    }
   };
 
   return (
     <div className="register-container">
       <h1>Register</h1>
+      {error && <div className="register-error">{error}</div>}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username:</label>
-          <input 
-            type="text" 
-            value={username} 
-            onChange={(e) => setUsername(e.target.value)} 
-          />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input 
-            type="email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-          />
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         </div>
         <div>
           <label>Password:</label>
-          <input 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-          />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <button type="submit">Register</button>
       </form>
